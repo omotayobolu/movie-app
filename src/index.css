@@ -13,4 +13,16 @@
     font-family: "DM Sans", sans-serif;
     background-color: white;
   }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+
+  p {
+    @apply lg:text-base;
+  }
 }
