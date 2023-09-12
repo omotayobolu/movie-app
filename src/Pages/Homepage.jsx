@@ -1,31 +1,43 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import MovieItem from "../Components/MovieItem";
+import {
+  faBars,
+  faMagnifyingGlass,
+  faGreaterThan,
+} from "@fortawesome/free-solid-svg-icons";
+import Card from "../Components/Card";
 
 const Homepage = () => {
   const [moviesList, setMoviesList] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false)
-
-  const getMovies = () => {
-    fetch(
-      "https://api.themoviedb.org/3/discover/movie?api_key=51622a92f8effebccf78ad57f65dc592"
-    )
-      .then((response) => response.json())
-      .then((response) => setMoviesList(response.results))
-      .catch((err) => console.error(err));
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const getMovies = async () => {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=51622a92f8effebccf78ad57f65dc592"
+      );
+      const responseData = await response.json();
+      setMoviesList(responseData.results);
+      setIsLoading(false);
+    };
     getMovies();
   }, []);
 
   const top10Movies = moviesList.slice(0, 10);
 
+  // const hero = top10Movies[Math.floor(Math.random() * 10) + 1];
+  // console.log(hero.backdrop_path);
+
   return (
-    <div className="lg:px-[10%] lg:py-[3%] px-[5%] py-[2%] bg-homepage-bg bg-cover bg-no-repeat">
+    <div
+      // style={{
+      //   backgroundImage: `https://image.tmdb.org/t/p/original/${hero.backdrop_path}`,
+      // }}
+      className="lg:px-[10%] lg:py-[3%] px-[5%] py-[2%] bg-cover bg-no-repeat"
+    >
       <div className="text-white">
         <nav className="flex flex-row justify-between items-center">
           <img src={Logo} alt="MovieBox" />
@@ -48,11 +60,26 @@ const Homepage = () => {
           </div>
         </nav>
         <div>
-          {top10Movies.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
-          ))}
+          <h1></h1>
         </div>
       </div>
+      <div className="flex flex-row items-center justify-between my-8">
+        <h2>Featured Movie</h2>
+        <div className="flex flex-row items-center gap-2 text-rose-700">
+          <h6>See More </h6>
+          <FontAwesomeIcon icon={faGreaterThan} />
+        </div>
+      </div>
+      {isLoading && <p className="text-center">Loading...</p>}
+      {moviesList && (
+        <div className="grid grid-cols-4 gap-8">
+          {top10Movies.map((movie) => (
+            <Link key={movie.id} to={"/movie/" + movie.id}>
+              <Card movie={movie} />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

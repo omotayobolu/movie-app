@@ -5,13 +5,17 @@ import App from "./App.jsx";
 import "./index.css";
 import Homepage from "./Pages/Homepage.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
+import Movie from "./Pages/Movie.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
     errorElement: <ErrorPage />,
-    children: [],
+  },
+  {
+    element: <Movie />,
+    path: "movie/:id",
   },
 ]);
 
