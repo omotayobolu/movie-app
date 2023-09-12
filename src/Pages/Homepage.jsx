@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import MovieItem from "../Components/MovieItem";
 
 const Homepage = () => {
+  const [moviesList, setMoviesList] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false)
+
+  const getMovies = () => {
+    fetch(
+      "https://api.themoviedb.org/3/discover/movie?api_key=51622a92f8effebccf78ad57f65dc592"
+    )
+      .then((response) => response.json())
+      .then((response) => setMoviesList(response.results))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  const top10Movies = moviesList.slice(0, 10);
+
   return (
     <div className="lg:px-[10%] lg:py-[3%] px-[5%] py-[2%] bg-homepage-bg bg-cover bg-no-repeat">
       <div className="text-white">
@@ -28,6 +47,11 @@ const Homepage = () => {
             </div>
           </div>
         </nav>
+        <div>
+          {top10Movies.map((movie) => (
+            <MovieItem key={movie.id} movie={movie} />
+          ))}
+        </div>
       </div>
     </div>
   );
