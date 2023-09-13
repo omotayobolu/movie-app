@@ -10,9 +10,16 @@
   }
 
   html {
-    font-family: "DM Sans", sans-serif;
     background-color: white;
     color: #000000;
+  }
+
+  #home {
+    font-family: "DM Sans", sans-serif;
+  }
+
+  #movie {
+    font-family: "Poppins", sans-serif;
   }
 
   h1 {
@@ -23,11 +30,25 @@
     @apply text-4xl font-bold;
   }
 
+  h4 {
+    @apply text-2xl font-semibold;
+  }
+
+  h5 {
+    @apply text-xl font-semibold;
+  }
+
   h6 {
     @apply text-lg;
   }
 
   p {
     @apply lg:text-base;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply flex flex-row items-center justify-center gap-2 py-4 my-2 text-[#666666];
   }
 }

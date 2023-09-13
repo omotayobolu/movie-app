@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
 import "./index.css";
 import Homepage from "./Pages/Homepage.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
@@ -14,8 +13,9 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "movies/:id",
     element: <Movie />,
-    path: "movie/:id",
+    errorElement: <ErrorPage />,
   },
 ]);
 
