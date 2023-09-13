@@ -23,7 +23,7 @@ const Card = ({ movie }) => {
         <img
           src={`https://image.tmdb.org/t/p/original//${movie.poster_path}`}
           alt={movie.title}
-          className="w-[250px] max-w-full"
+          className="max-w-full"
           data-testid="movie-poster"
         />
         <h6 className="font-bold my-2" data-testid="movie-title">

@@ -82,7 +82,7 @@ const Movie = () => {
             <h5>Log out</h5>
           </NavLink>
         </div>
-        <div className="w-[85%] m-[3%]">
+        <div className="md:w-[85%] w-full m-[3%]">
           {movieDetails && (
             <div>
               <h4 data-testid="movie-title">{movieDetails.title}</h4>

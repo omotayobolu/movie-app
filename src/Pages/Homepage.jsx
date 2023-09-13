@@ -48,7 +48,7 @@ const Homepage = () => {
         }}
         className="lg:px-[8%] lg:py-[3%] px-[5%] py-[2%] text-white min-h-screen bg-[rgba(0,0,0,50%)] bg-blend-overlay bg-cover bg-center bg-no-repeat"
       >
-        <nav className="flex flex-row justify-between items-center">
+        <nav className="flex md:flex-row flex-col gap-4 justify-between items-center">
           <img src={Logo} alt="MovieBox" />
           <div className="relative">
             <input
@@ -68,7 +68,7 @@ const Homepage = () => {
             </div>
           </div>
         </nav>
-        <div className="mt-20 w-[400px] gap-4 flex flex-col">
+        <div className="mt-20 md:w-[35%] w-full gap-4 flex flex-col">
           <h1>{hero.title}</h1>
           <span className="text-sm flex flex-row items-center gap-2">
             <img src={imdb} alt="" />
@@ -82,7 +82,7 @@ const Homepage = () => {
         </div>
       </div>
       <div className="lg:px-[8%] lg:py-[3%] px-[5%] py-[2%]">
-        <div className="flex flex-row items-center justify-between mt-[3%] bg-white">
+        <div className="flex flex-row items-center justify-between mt-[5%] bg-white">
           <h2>Featured Movie</h2>
           <div className="flex flex-row items-center gap-2 text-rose-700">
             <h6>See More </h6>
@@ -90,7 +90,7 @@ const Homepage = () => {
           </div>
         </div>
         {moviesList && (
-          <div className="grid grid-cols-4 gap-8 my-4 place-items-center">
+          <div className="grid md:grid-cols-4 grid-cols-1 gap-8 my-4 place-items-center">
             {top10Movies.map((movie) => (
               <Card key={movie.id} movie={movie} />
             ))}
