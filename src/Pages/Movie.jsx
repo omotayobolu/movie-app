@@ -35,15 +35,15 @@ const Movie = () => {
 
   const release_date = movieDetails.release_date;
   const dateInLocalTime = new Date(release_date);
-  const release_date_in_utc = dateInLocalTime.toISOString();
+  const release_date_in_utc = dateInLocalTime.toUTCString();
 
   return (
     <section id="movie">
       <div className="w-full flex md:flex-row">
-        <div className="w-[15%] md:flex hidden flex-col border border-[rgba(0,0,0,30%)] rounded-r-[45px]">
-          <img src={Logo} alt="MovieBox Logo" className="m-8" />
+        <div className="md:w-[15%] md:flex hidden flex-col border border-[rgba(0,0,0,30%)] rounded-r-[45px]">
+          <img src={Logo} alt="MovieBox Logo" className="m-6" />
           <div className="flex flex-col">
-            <NavLink className="nav-link">
+            <NavLink to="/" className="nav-link">
               <GoHome className="text-2xl" />
               <h5>Home</h5>
             </NavLink>
@@ -85,11 +85,31 @@ const Movie = () => {
         <div className="md:w-[85%] w-full m-[3%]">
           {movieDetails && (
             <div>
-              <h4 data-testid="movie-title">{movieDetails.title}</h4>
-              <h4 data-testid="movie-release-date">{release_date_in_utc}</h4>
-              <h4 data-testid="movie-runtime">
-                {movieDetails.runtime} minutes
-              </h4>
+              <img
+                src={`https://image.tmdb.org/t/p/original//${movieDetails.poster_path}`}
+                alt={movieDetails.title}
+                className="h-[350px]"
+              />
+              <ul className="mt-4 flex flex-row flex-wrap md:gap-8 items-center  text-[#404040] list-disc">
+                <li
+                  className="md:text-2xl text-xl font-semibold md:ml-6"
+                  data-testid="movie-title"
+                >
+                  {movieDetails.title}
+                </li>
+                <li
+                  className="md:text-2xl text-xl font-semibold"
+                  data-testid="movie-release-date"
+                >
+                  {release_date_in_utc}
+                </li>
+                <li
+                  className="md:text-2xl text-xl font-semibold"
+                  data-testid="movie-runtime"
+                >
+                  {movieDetails.runtime} minutes
+                </li>
+              </ul>
               <h6 data-testid="movie-overview">{movieDetails.overview}</h6>
             </div>
           )}

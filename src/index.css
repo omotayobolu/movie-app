@@ -49,6 +49,6 @@
 
 @layer components {
   .nav-link {
-    @apply flex flex-row items-center justify-center gap-2 py-4 my-2 text-[#666666];
+    @apply flex flex-row items-center gap-2 py-4 px-8 my-2 text-[#666666];
   }
 }

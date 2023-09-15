@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/Logo.png";
 import imdb from "../assets/imdb.png";
+import tomato from "../assets/tomato.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -38,7 +39,6 @@ const Homepage = () => {
   const top10Movies = moviesList.slice(0, 10);
 
   const hero = top10Movies[Math.floor(Math.random() * 10) + 1];
-  console.log(hero);
 
   return (
     <div id="home">
@@ -70,10 +70,16 @@ const Homepage = () => {
         </nav>
         <div className="mt-20 md:w-[35%] w-full gap-4 flex flex-col">
           <h1>{hero.title}</h1>
-          <span className="text-sm flex flex-row items-center gap-2">
-            <img src={imdb} alt="" />
-            {hero.vote_average * 10} / 100
-          </span>
+          <div className="flex flex-row items-center gap-4">
+            <span className="text-sm flex flex-row items-center gap-2">
+              <img src={imdb} alt="" />
+              {hero.vote_average * 10} / 100
+            </span>
+            <span className="text-sm flex flex-row items-center gap-2">
+              <img src={tomato} alt="" />
+              {hero.vote_average * 10}%
+            </span>
+          </div>
           <p className="text-sm">{hero.overview}</p>
           <button className="flex w-fit rounded-md flex-row items-center gap-2 px-4 py-2 bg-rose-700">
             <AiFillPlayCircle />
@@ -82,7 +88,7 @@ const Homepage = () => {
         </div>
       </div>
       <div className="lg:px-[8%] lg:py-[3%] px-[5%] py-[2%]">
-        <div className="flex flex-row items-center justify-between mt-[5%] bg-white">
+        <div className="flex flex-row items-center justify-between mt-[3%] bg-white">
           <h2>Featured Movie</h2>
           <div className="flex flex-row items-center gap-2 text-rose-700">
             <h6>See More </h6>
