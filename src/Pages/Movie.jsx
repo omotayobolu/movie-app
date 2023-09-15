@@ -90,7 +90,7 @@ const Movie = () => {
                 alt={movieDetails.title}
                 className="h-[350px]"
               />
-              <ul className="mt-4 flex flex-row flex-wrap md:gap-8 items-center  text-[#404040] list-disc">
+              <ul className="mt-4 flex md:flex-row flex-col md:gap-8 gap-4 md:items-center  text-[#404040] list-disc">
                 <li
                   className="md:text-2xl text-xl font-semibold md:ml-6"
                   data-testid="movie-title"
@@ -110,7 +110,9 @@ const Movie = () => {
                   {movieDetails.runtime} minutes
                 </li>
               </ul>
-              <h6 data-testid="movie-overview">{movieDetails.overview}</h6>
+              <h6 className="mt-4" data-testid="movie-overview">
+                {movieDetails.overview}
+              </h6>
             </div>
           )}
         </div>
